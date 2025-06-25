@@ -42,7 +42,7 @@ const itemData = {
         });
 
         function showItem(key){
-            const item = itemsData[key];
+            const item = itemData[key];
             if(!item) return;
             img.src = item.image;
             photographer.value = item.photographer;
@@ -63,7 +63,7 @@ const itemData = {
             }
         });
 
-        voteUpButton.addEventListener('click',() => {
+        voteDownButton.addEventListener('click',() => {
             const key = select.value;
             if (itemData[key]) {
                 itemData[key].score--;
