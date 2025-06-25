@@ -31,8 +31,8 @@ const itemData = {
         const photographer = document.getElementById('photographer');
         const description = document.getElementById('description');
         const score = document.getElementById('score');
-        const voteUpButton = document.getElementById('increaseScore')
-        const voteDownButton = document.getElementById('decreaseScore')
+        const voteUpButton = document.getElementById('increaseScore');
+        const voteDownButton = document.getElementById('decreaseScore');
 
         Object.keys(itemData).forEach(key => {
             const option = document.createElement('option');
@@ -41,34 +41,42 @@ const itemData = {
             select.appendChild(option);
         });
 
-        function showItem(key){
+        function showItem(key) {
             const item = itemData[key];
-            if(!item) return;
+            if (!item) return;
             img.src = item.image;
             photographer.value = item.photographer;
             description.value = item.description;
             score.value = item.score;
         }
-        
+
         select.addEventListener('change', () => {
             const key = select.value;
             showItem(key);
         });
 
-        voteUpButton.addEventListener('click',() => {
+        voteUpButton.addEventListener('click', () => {
             const key = select.value;
+            if (key === "-1") {
+                alert("Por favor, selecciona un ítem antes de votar.");
+                return;
+            }
             if (itemData[key]) {
                 itemData[key].score++;
                 score.value = itemData[key].score;
             }
         });
 
-        voteDownButton.addEventListener('click',() => {
+        voteDownButton.addEventListener('click', () => {
             const key = select.value;
+            if (key === "-1") {
+                alert("Por favor, selecciona un ítem antes de votar.");
+                return;
+            }
             if (itemData[key]) {
                 itemData[key].score--;
                 score.value = itemData[key].score;
             }
         });
     });
-});
+})();
